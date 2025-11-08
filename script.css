@@ -1,91 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap');
+
 body {
-  background: radial-gradient(circle, #3e1f1f 40%, #1b0e0e 100%);
-  color: #f5deb3;
+  background: radial-gradient(circle at center, #2c1b1b, #120909);
+  color: #fffbea;
   font-family: 'Cinzel', serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
 }
 
 .game-container {
-  text-align: center;
-  background: #2b1a1a;
+  background: #2b1c0f;
   border: 4px solid gold;
-  border-radius: 12px;
-  padding: 20px 40px;
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-  width: 500px;
+  border-radius: 15px;
+  padding: 20px 30px;
+  width: 450px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
 }
 
 h1 {
   color: gold;
-  text-shadow: 0 0 8px #ffd700;
   margin-bottom: 20px;
+  text-shadow: 0 0 10px gold;
 }
 
-.status-table {
+.stats-table {
   width: 100%;
+  margin-bottom: 15px;
   border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-.status-table th, .status-table td {
-  border: 1px solid gold;
-  padding: 8px;
-}
-
-#controls button {
-  background: #5a2a2a;
-  color: #fff5cc;
   border: 2px solid gold;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 8px;
+}
+
+.stats-table th, .stats-table td {
+  border: 1px solid gold;
+  padding: 6px;
+}
+
+#controls {
+  margin: 15px 0;
+}
+
+button {
+  background: gold;
+  border: 2px solid #a67c00;
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin: 3px;
   cursor: pointer;
   font-family: 'Cinzel', serif;
+  transition: all 0.2s ease-in-out;
 }
 
-#controls button:hover {
-  background: gold;
-  color: #2b1a1a;
+button:hover {
+  background: #ffd700;
+  transform: scale(1.05);
 }
 
-#text {
-  margin-bottom: 15px;
-  font-size: 1.1em;
+.description {
+  background: #3c2812;
+  border: 2px solid gold;
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 60px;
+  box-shadow: inset 0 0 5px #d4af37;
 }
 
-/* Popup Modal */
+/* Popup */
 .popup {
-  display: none;
   position: fixed;
-  z-index: 10;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(10, 10, 10, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
 }
 
 .popup-content {
-  background: #2b1a1a;
-  border: 2px solid gold;
+  background: #2b1c0f;
+  color: #fffbea;
+  border: 3px solid gold;
+  padding: 20px 30px;
   border-radius: 10px;
-  color: #fff5cc;
-  padding: 20px;
-  width: 300px;
-  margin: 200px auto;
   text-align: center;
+  width: 300px;
 }
 
 .popup-content button {
-  background: gold;
-  color: #2b1a1a;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
   margin-top: 10px;
-  cursor: pointer;
 }

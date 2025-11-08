@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🐉 Dragon Repeller - Royal Edition</title>
+  <title>Dragon Repeller - Royal Edition 👑</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="game-container">
     <h1>👑 Dragon Repeller - Royal Edition 👑</h1>
-    <table class="status-table">
+
+    <table class="stats-table">
       <tr>
-        <th>👤 XP</th>
+        <th>🧙 XP</th>
         <th>❤️ Health</th>
         <th>💰 Gold</th>
         <th>⚔️ Weapon</th>
@@ -24,20 +25,22 @@
       </tr>
     </table>
 
-    <div id="text">🏰 You are in the town square. What will you do?</div>
-
     <div id="controls">
-      <button id="goStore">🏪 Go to Store</button>
-      <button id="goCave">⚔️ Go to Cave</button>
-      <button id="fightDragon">🐉 Fight Dragon</button>
+      <button onclick="goStore()">🏪 Go to Store</button>
+      <button onclick="goCave()">🕳️ Go to Cave</button>
+      <button onclick="fightDragon()">🐉 Fight Dragon</button>
+    </div>
+
+    <div id="text" class="description">
+      🏰 You are in the town square. What will you do?
     </div>
   </div>
 
   <!-- Popup Modal -->
-  <div id="popup" class="popup">
+  <div id="popup" class="popup hidden">
     <div class="popup-content">
       <p id="popup-message"></p>
-      <button id="closePopup">OK</button>
+      <button onclick="closePopup()">OK</button>
     </div>
   </div>
 
