@@ -2,36 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dragon Repeller</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🐉 Dragon Repeller - Royal Edition</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="game-container">
-    <h1>🐉 Dragon Repeller</h1>
-
-    <table class="stats">
+    <h1>👑 Dragon Repeller - Royal Edition 👑</h1>
+    <table class="status-table">
       <tr>
-        <td><strong>XP:</strong> <span id="xpText">0</span></td>
-        <td><strong>Health:</strong> <span id="healthText">100</span></td>
-        <td><strong>Gold:</strong> <span id="goldText">50</span></td>
+        <th>👤 XP</th>
+        <th>❤️ Health</th>
+        <th>💰 Gold</th>
+        <th>⚔️ Weapon</th>
+      </tr>
+      <tr>
+        <td id="xp">0</td>
+        <td id="health">100</td>
+        <td id="gold">50</td>
+        <td id="weapon">Dagger 🗡️</td>
       </tr>
     </table>
 
-    <div class="controls">
-      <button id="button1">Go to store</button>
-      <button id="button2">Go to cave</button>
-      <button id="button3">Fight dragon</button>
+    <div id="text">🏰 You are in the town square. What will you do?</div>
+
+    <div id="controls">
+      <button id="goStore">🏪 Go to Store</button>
+      <button id="goCave">⚔️ Go to Cave</button>
+      <button id="fightDragon">🐉 Fight Dragon</button>
     </div>
+  </div>
 
-    <table class="monster-stats" id="monsterStats">
-      <tr>
-        <td><strong>Monster:</strong> <span id="monsterName"></span></td>
-        <td><strong>Health:</strong> <span id="monsterHealth"></span></td>
-      </tr>
-    </table>
-
-    <p id="text">You are in the town square. You see a sign that says “Store”.</p>
+  <!-- Popup Modal -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <p id="popup-message"></p>
+      <button id="closePopup">OK</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
