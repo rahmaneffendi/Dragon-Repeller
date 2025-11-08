@@ -1,45 +1,73 @@
 body {
-  background-color: #0a0a23;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1c1c1c;
+  color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-#text {
-  background-color: #0a0a23;
-  color: #ffffff;
-  padding: 10px;
+.game-container {
+  background: #2b2b2b;
+  padding: 20px 28px;
+  border-radius: 12px;
+  width: 420px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
 
-#game {
-  max-width: 500px;
-  max-height: 400px;
-  background-color: #ffffff;
-  color: #ffffff;
-  margin: 30px auto 0px;
-  padding: 10px;
+h1 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #fbbf24;
+  text-shadow: 0 0 5px #fbbf24aa;
 }
 
-#controls,
-#stats {
-  border: 1px solid #0a0a23;
-  padding: 5px;
-  color: #0a0a23;
+table.stats, table.monster-stats {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 14px;
 }
 
-#monsterStats {
-  display: none;
-  border: 1px solid #0a0a23;
-  padding: 5px;
-  color: #ffffff;
-  background-color: #c70d0d;
+table.stats td, table.monster-stats td {
+  padding: 6px 8px;
+  border: 1px solid #444;
+  background-color: #333;
 }
 
-.stat {
-  padding-right: 10px;
+table.monster-stats {
+  display: none; /* hidden until battle starts */
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 button {
+  background-color: #fbbf24;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #000;
+  font-weight: 600;
   cursor: pointer;
-  color: #0a0a23;
-  background-color: #feac32;
-  background-image: linear-gradient(#fecc4c, #ffac33);
-  border: 3px solid #feac32;
+  flex: 1;
+  margin: 0 4px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #facc15;
+}
+
+p#text {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 6px;
+  min-height: 60px;
+  line-height: 1.4em;
 }
