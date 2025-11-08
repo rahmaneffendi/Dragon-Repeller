@@ -1,19 +1,19 @@
 let xp = 0;
 let health = 100;
 let gold = 50;
-let currentWeapon = "Dagger 🗡️";
+let currentWeapon = "Dagger";
 
 const weapons = [
-  { name: "🗡️ Dagger", damage: 10, cost: 10 },
-  { name: "⚔️ Sword", damage: 20, cost: 30 },
-  { name: "🏹 Bow", damage: 25, cost: 40 },
-  { name: "🔮 Staff", damage: 35, cost: 60 },
+  { name: "Dagger", damage: 10, cost: 10 },
+  { name: "Sword", damage: 20, cost: 30 },
+  { name: "Bow", damage: 25, cost: 40 },
+  { name: "Staff", damage: 35, cost: 60 },
 ];
 
 const monsters = [
-  { name: "🐀 Rat", hp: 20, gold: 5, xp: 5 },
-  { name: "🐺 Wolf", hp: 40, gold: 10, xp: 10 },
-  { name: "🐉 Dragon", hp: 100, gold: 50, xp: 50 },
+  { name: "Rat", hp: 20, gold: 5, xp: 5 },
+  { name: "Wolf", hp: 40, gold: 10, xp: 10 },
+  { name: "Dragon", hp: 100, gold: 50, xp: 50 },
 ];
 
 function updateStats() {
@@ -24,38 +24,41 @@ function updateStats() {
 }
 
 function showPopup(message) {
-  document.getElementById("popup-message").innerText = message;
-  document.getElementById("popup").classList.remove("hidden");
+  const popup = document.getElementById("popup");
+  const msg = document.getElementById("popup-message");
+  msg.innerText = message;
+  popup.classList.remove("hidden");
 }
 
 function closePopup() {
-  document.getElementById("popup").classList.add("hidden");
+  const popup = document.getElementById("popup");
+  popup.classList.add("hidden");
 }
 
 function goTown() {
   document.getElementById("controls").innerHTML = `
-    <button onclick="goStore()">🏪 Go to Store</button>
-    <button onclick="goCave()">🕳️ Go to Cave</button>
-    <button onclick="fightDragon()">🐉 Fight Dragon</button>
+    <button onclick="goStore()">Go to Store</button>
+    <button onclick="goCave()">Go to Cave</button>
+    <button onclick="fightDragon()">Fight Dragon</button>
   `;
   document.getElementById("text").innerText =
-    "🏰 You are in the town square. What will you do?";
+    "You are in the town square. What will you do?";
 }
 
 function goStore() {
-  document.getElementById("text").innerHTML = "🏪 Welcome to the Store! Choose what you want to buy:";
+  document.getElementById("text").innerHTML = "Welcome to the Store! Choose what you want to buy:";
   let weaponButtons = weapons
     .map(
       (w) =>
-        `<button onclick="buyWeapon('${w.name}')">${w.name} - 💰 ${w.cost} gold</button>`
+        `<button onclick="buyWeapon('${w.name}')">${w.name} - ${w.cost} Gold</button>`
     )
     .join("");
   document.getElementById("controls").innerHTML = `
     ${weaponButtons}
     <br>
-    <button onclick="buyHealth()">❤️ Buy Health Potion (+20 HP) - 💰 10 gold</button>
+    <button onclick="buyHealth()">Buy Health Potion (+20 HP) - 10 Gold</button>
     <br>
-    <button onclick="goTown()">🏰 Back to Town</button>
+    <button onclick="goTown()">Back to Town</button>
   `;
 }
 
@@ -65,9 +68,9 @@ function buyWeapon(weaponName) {
     gold -= weapon.cost;
     currentWeapon = weapon.name;
     updateStats();
-    showPopup(`🛒 You bought ${weapon.name}!`);
+    showPopup(`You bought a ${weapon.name}.`);
   } else {
-    showPopup("💰 Not enough gold to buy that weapon!");
+    showPopup("Not enough gold to buy that weapon.");
   }
 }
 
@@ -77,20 +80,20 @@ function buyHealth() {
     health += 20;
     if (health > 100) health = 100;
     updateStats();
-    showPopup("💖 You feel refreshed! Health restored by 20.");
+    showPopup("Health restored by 20 points.");
   } else {
-    showPopup("💰 Not enough gold for a potion!");
+    showPopup("Not enough gold for a potion.");
   }
 }
 
 function goCave() {
   document.getElementById("controls").innerHTML = `
-    <button onclick="fightMonster('🐀 Rat')">🐀 Fight Rat</button>
-    <button onclick="fightMonster('🐺 Wolf')">🐺 Fight Wolf</button>
-    <button onclick="goTown()">🏰 Back to Town</button>
+    <button onclick="fightMonster('Rat')">Fight Rat</button>
+    <button onclick="fightMonster('Wolf')">Fight Wolf</button>
+    <button onclick="goTown()">Back to Town</button>
   `;
   document.getElementById("text").innerText =
-    "🕳️ You enter the dark cave... Monsters lurk around!";
+    "You enter the dark cave... Monsters are nearby!";
 }
 
 function fightMonster(monsterName) {
@@ -99,7 +102,7 @@ function fightMonster(monsterName) {
     `${monster.name} appears! Prepare for battle!`;
 
   let monsterHP = monster.hp;
-  let damage = weapons.find((w) => currentWeapon.includes(w.name.split(" ")[1])).damage;
+  let damage = weapons.find((w) => currentWeapon.includes(w.name)).damage;
 
   const fightInterval = setInterval(() => {
     monsterHP -= damage;
@@ -109,12 +112,12 @@ function fightMonster(monsterName) {
       clearInterval(fightInterval);
       xp += monster.xp;
       gold += monster.gold;
-      showPopup(`🏆 You defeated ${monster.name}! +${monster.xp} XP, +${monster.gold} Gold`);
       updateStats();
+      showPopup(`You defeated the ${monster.name}! +${monster.xp} XP, +${monster.gold} Gold`);
       goTown();
     } else if (health <= 0) {
       clearInterval(fightInterval);
-      showPopup("💀 You have fallen in battle...");
+      showPopup("You have fallen in battle...");
       resetGame();
     }
   }, 700);
@@ -122,14 +125,14 @@ function fightMonster(monsterName) {
 
 function fightDragon() {
   if (xp < 50 || health < 80) {
-    showPopup("⚠️ You are not ready to face the Dragon! Required: XP ≥ 50, Health ≥ 80.");
+    showPopup("You are not ready to face the Dragon. (XP ≥ 50, Health ≥ 80 required)");
     return;
   }
 
-  document.getElementById("text").innerText = "🔥 The Dragon roars! The final battle begins!";
-  const dragon = monsters.find((m) => m.name === "🐉 Dragon");
+  document.getElementById("text").innerText = "The Dragon roars! The final battle begins!";
+  const dragon = monsters.find((m) => m.name === "Dragon");
   let dragonHP = dragon.hp;
-  let damage = weapons.find((w) => currentWeapon.includes(w.name.split(" ")[1])).damage;
+  let damage = weapons.find((w) => currentWeapon.includes(w.name)).damage;
 
   const fightInterval = setInterval(() => {
     dragonHP -= damage;
@@ -137,12 +140,12 @@ function fightDragon() {
 
     if (dragonHP <= 0) {
       clearInterval(fightInterval);
-      showPopup("🎉 You defeated the Dragon! The kingdom is saved!");
       updateStats();
+      showPopup("You defeated the Dragon! The kingdom is saved!");
       goTown();
     } else if (health <= 0) {
       clearInterval(fightInterval);
-      showPopup("💀 You were slain by the Dragon...");
+      showPopup("You were slain by the Dragon...");
       resetGame();
     }
   }, 800);
@@ -152,7 +155,7 @@ function resetGame() {
   xp = 0;
   health = 100;
   gold = 50;
-  currentWeapon = "Dagger 🗡️";
+  currentWeapon = "Dagger";
   updateStats();
   goTown();
 }
